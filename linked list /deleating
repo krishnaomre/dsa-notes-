@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int pos,count;
+    int i=0;
+    //traversing
+    struct node{
+        int data;
+        struct node * next;
+    };
+    struct node *temp,*head,*newnode;
+   newnode=temp=head=0;
+    char ch='y';
+    while(ch=='y')
+    {
+        newnode=(struct node*)malloc(sizeof(struct node));
+          printf("enter the data");
+          scanf("%d",&newnode->data);
+          newnode->next=0;
+        if(head==0)
+        {
+            head=temp=newnode;
+        }
+        else
+        {
+            temp->next=newnode;
+            temp=newnode;
+        }
+    printf("continue ?");
+    scanf(" %c",&ch);
+    }
+   //deleting first node
+    struct node *ptr=head;
+    head=head->next;
+    free(ptr);
+    //deleting a node in between
+ printf("enter the position you want to delete from");
+    scanf("%d",&pos);
+  struct node *p=head;
+   struct node *q=p->next;
+    while(i<pos-1){
+        p=p->next;
+         q=q->next;
+        i++;
+    }
+   
+    p->next=q->next;
+    free(q);
+    
+    
+    //deleating the last element
+    struct node *p=head;
+   struct node *q=p->next;
+    while(q->next!=NULL){
+        p=p->next;
+         q=q->next;
+        i++;
+    }
+   p->next=0;
+   free(q);
+   
+   
+    //printing the list
+    temp=head;
+    printf("entered data is\n");
+    while(temp!=0)
+    {
+        printf("%d\n",temp->data);
+        temp=temp->next;
+    }
+}
